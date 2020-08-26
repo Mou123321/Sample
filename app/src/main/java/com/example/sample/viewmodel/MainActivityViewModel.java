@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.util.Log;
 
 import com.example.sample.data.Repository;
+import com.example.sample.data.local.ItemEntity;
 import com.example.sample.data.model.ItemModel;
 import com.example.sample.navigator.MainActivityNavigator;
 
@@ -44,6 +45,22 @@ public class MainActivityViewModel extends ViewModel {
 
                     setData();
                 },
+                        e -> Log.e("Get All Item Error is ", Objects.requireNonNull(e.getMessage())));
+    }
+
+    @SuppressLint("CheckResult")
+    public void getAllItemFromLocal() {
+        repository.getAllItemFromLocal()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(list -> {
+                            items.clear();
+
+                            for (ItemEntity itemEntity : list) {
+                                items.add(new ItemViewModel(itemEntity));
+                            }
+
+                            setData();
+                        },
                         e -> Log.e("Get All Item Error is ", Objects.requireNonNull(e.getMessage())));
     }
 

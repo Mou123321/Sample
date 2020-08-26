@@ -6,6 +6,7 @@ import android.widget.Toast;
 import com.example.sample.R;
 import com.example.sample.adpter.ItemRecyclerViewAdapter;
 import com.example.sample.data.Repository;
+import com.example.sample.data.local.ItemDatabase;
 import com.example.sample.databinding.ActivityMainBinding;
 import com.example.sample.navigator.MainActivityNavigator;
 import com.example.sample.viewmodel.ItemViewModel;
@@ -31,9 +32,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityNavig
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        viewModel = new ViewModelProvider(this, new MainActivityViewModelFactory(Repository.getInstance())).get(MainActivityViewModel.class);
+        viewModel = new ViewModelProvider(this,
+                new MainActivityViewModelFactory(Repository.getInstance(ItemDatabase.getInstance(this).itemDao()))).get(MainActivityViewModel.class);
 
-        viewModel.getAllItem();
+        viewModel.getAllItemFromLocal();
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 

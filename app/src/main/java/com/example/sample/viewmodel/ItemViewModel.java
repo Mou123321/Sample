@@ -1,5 +1,6 @@
 package com.example.sample.viewmodel;
 
+import com.example.sample.data.local.ItemEntity;
 import com.example.sample.data.model.ItemModel;
 
 import androidx.databinding.ObservableField;
@@ -22,6 +23,19 @@ public class ItemViewModel {
         date.set(itemModel.getDate());
         if (itemModel.getPhone() != null) {
             phone.set(itemModel.getPhone());
+        }
+    }
+
+    public ItemViewModel(ItemEntity itemEntity) {
+        title.set(itemEntity.getTitle());
+        location.set(itemEntity.getLocation1());
+        if (itemEntity.getImage() != null) {
+            url.set(itemEntity.getImage());
+        }
+        description.set(itemEntity.getDescription());
+        date.set(itemEntity.getDate());
+        if (itemEntity.getPhone() != null) {
+            phone.set(itemEntity.getPhone());
         }
     }
 }
