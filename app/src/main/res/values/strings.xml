@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Sample</string>
+
+    <string name="share_button">Share</string>
+    <string name="picture">picture</string>
+    <string name="phone">phone</string>
+    <string name="share_with_email_text">Share With Email</string>
+    <string name="share_with_short_message_service_text">Share With Short Message Service</string>
+    <string name="head_image_text">Head Image</string>
 </resources>

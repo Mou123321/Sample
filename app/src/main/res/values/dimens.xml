@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="recycler_view_item_margin">20dp</dimen>
+    <dimen name="recycler_view_item_padding">10dp</dimen>
+    <dimen name="recycler_view_item_big_text_size">20sp</dimen>
+    <dimen name="recycler_view_item_medium_text_size">16sp</dimen>
+    <dimen name="recycler_view_item_small_text_size">14sp</dimen>
+
+    <dimen name="bottom_sheet_padding">20dp</dimen>
+
+    <dimen name="detail_activity_margin">20dp</dimen>
+    <dimen name="detail_activity_big_text_size">24sp</dimen>
+    <dimen name="detail_activity_medium_text_size">18sp</dimen>
+    <dimen name="detail_activity_small_text_size">16sp</dimen>
+    <dimen name="detail_activity_title_text_line_spacing">10dp</dimen>
+
+</resources>
