@@ -25,7 +25,6 @@ public class MainActivityViewModel extends ViewModel {
 
     CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-
     public MainActivityViewModel(Repository repository)
     {
         this.repository = repository;

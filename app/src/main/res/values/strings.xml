@@ -7,4 +7,5 @@
     <string name="share_with_email_text">Share With Email</string>
     <string name="share_with_short_message_service_text">Share With Short Message Service</string>
     <string name="head_image_text">Head Image</string>
+    <string name="profile">Profile</string>
 </resources>

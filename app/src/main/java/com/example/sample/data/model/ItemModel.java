@@ -1,8 +1,11 @@
 package com.example.sample.data.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class ItemModel {
+public class ItemModel implements Parcelable {
     private String id;
     private String description;
     private String title;
@@ -13,6 +16,49 @@ public class ItemModel {
     @SerializedName("locationline1")
     private String location1;
 
+    public ItemModel(){}
+
+    protected ItemModel(Parcel in) {
+        id = in.readString();
+        description = in.readString();
+        title = in.readString();
+        timestamp = in.readString();
+        image = in.readString();
+        phone = in.readString();
+        date = in.readString();
+        location1 = in.readString();
+        location2 = in.readString();
+    }
+
+    public static final Creator<ItemModel> CREATOR = new Creator<ItemModel>() {
+        @Override
+        public ItemModel createFromParcel(Parcel in) {
+            return new ItemModel(in);
+        }
+
+        @Override
+        public ItemModel[] newArray(int size) {
+            return new ItemModel[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(id);
+        parcel.writeString(description);
+        parcel.writeString(title);
+        parcel.writeString(timestamp);
+        parcel.writeString(image);
+        parcel.writeString(phone);
+        parcel.writeString(date);
+        parcel.writeString(location1);
+        parcel.writeString(location2);
+    }
     public String getId() {
         return id;
     }

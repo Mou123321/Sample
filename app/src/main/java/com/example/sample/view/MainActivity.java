@@ -1,6 +1,7 @@
 package com.example.sample.view;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -9,6 +10,7 @@ import com.example.sample.R;
 import com.example.sample.adpter.ItemRecyclerViewAdapter;
 import com.example.sample.data.Repository;
 import com.example.sample.data.local.ItemDatabase;
+import com.example.sample.data.model.ItemModel;
 import com.example.sample.databinding.ActivityMainBinding;
 import com.example.sample.navigator.MainActivityNavigator;
 import com.example.sample.viewmodel.ItemViewModel;
@@ -48,7 +50,16 @@ public class MainActivity extends AppCompatActivity implements MainActivityNavig
         adapter = new ItemRecyclerViewAdapter(new ItemRecyclerViewAdapter.ClickListener() {
             @Override
             public void lunchIntent(String title, String date, String description, String image, String phone) {
-                Toast.makeText(getApplicationContext(), "lunch called", Toast.LENGTH_LONG).show();
+                ItemModel item = new ItemModel();
+                item.setTitle(title);
+                item.setImage(image);
+                item.setDescription(description);
+
+                Intent intent = new Intent(getApplicationContext(), ItemDetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("item", item);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
 
             @Override
