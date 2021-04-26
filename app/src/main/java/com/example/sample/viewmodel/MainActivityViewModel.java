@@ -1,6 +1,5 @@
 package com.example.sample.viewmodel;
 
-import android.annotation.SuppressLint;
 import android.util.Log;
 
 import com.example.sample.data.Repository;
@@ -15,12 +14,17 @@ import java.util.Objects;
 
 import androidx.lifecycle.ViewModel;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 public class MainActivityViewModel extends ViewModel {
     private List<ItemViewModel> items;
     private Repository repository;
 
     private WeakReference<MainActivityNavigator> navigator;
+
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
+
 
     public MainActivityViewModel(Repository repository)
     {
@@ -32,9 +36,8 @@ public class MainActivityViewModel extends ViewModel {
         this.navigator = new WeakReference<>(navigator);
     }
 
-    @SuppressLint("CheckResult")
     public void getAllItem() {
-        repository.getAllItem()
+        Disposable disposable = repository.getAllItem()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(list -> {
                     items.clear();
@@ -46,11 +49,12 @@ public class MainActivityViewModel extends ViewModel {
                     setData();
                 },
                         e -> Log.e("Get All Item Error is ", Objects.requireNonNull(e.getMessage())));
+
+        compositeDisposable.add(disposable);
     }
 
-    @SuppressLint("CheckResult")
     public void getAllItemFromLocal() {
-        repository.getAllItemFromLocal()
+        Disposable disposable = repository.getAllItemFromLocal()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(list -> {
                             items.clear();
@@ -62,6 +66,8 @@ public class MainActivityViewModel extends ViewModel {
                             setData();
                         },
                         e -> Log.e("Get All Item Error is ", Objects.requireNonNull(e.getMessage())));
+
+        compositeDisposable.add(disposable);
     }
 
     private void setData() {
@@ -70,4 +76,7 @@ public class MainActivityViewModel extends ViewModel {
         }
     }
 
+    public void dispose() {
+        compositeDisposable.dispose();
+    }
 }

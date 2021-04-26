@@ -107,4 +107,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityNavig
     public void setData(List<ItemViewModel> items) {
         adapter.setData(items);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        viewModel.dispose();
+    }
 }

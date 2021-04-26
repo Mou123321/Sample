@@ -53,8 +53,6 @@ public class Repository {
                    for (ItemModel itemModel : list) {
                        ItemEntity itemEntity= new ItemEntity(itemModel);
                        String s = saveImageToFIle(itemModel.getTitle(), itemModel.getImage());
-                       System.out.println("base url is " + itemModel.getImage());
-                       System.out.println("url is " + s);
                        itemEntity.setImage(s);
                        itemDao.addItem(itemEntity);
                    }
